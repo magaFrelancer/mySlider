@@ -1,62 +1,56 @@
-let sec = 0;
-let rotate = 0;
-let timer = document.querySelector('.timer');
-timer.addEventListener('click', () => {
-    sec = 0;
-    rotate++;
-    timer.style.transform = 'rotate(' + rotate + 'turn)'
-})
-function seconds() {
-    sec++
-    timer.innerHTML = sec + '.sec';
-}
-seconds()
-setInterval(seconds, 1000)
-//===================================
-
-
-let slider__items = document.querySelectorAll('.slider__items'),
-    btns = document.querySelectorAll('.slider__btn'),
-    sliderLi = document.querySelectorAll('.slider__page-li'),
+let img = document.querySelectorAll('.slider__li'),
+    btn = document.querySelectorAll('.slider__btn'),
+    page = document.querySelectorAll('.slider__page_li'),
     index = 0,
-    timerFun = 2000;
+    interval = null;
 
-
-function autoSlider() {
-    if (index > slider__items.length - 1) index = 0;
-
-    obh(slider__items, null, true)//для slider__items = opacity = 0
-    obh(sliderLi, true, null)//sliderLi = classList.remove('active')
-    slider__items[index].style.opacity = 1
-    sliderLi[index].classList.add('active');
-    index++
-};
-setInterval(autoSlider, timerFun);
-autoSlider()
-function obh(item, cls, ops) {
-    if (cls == true || ops == null) {
-        item.forEach(item => {
-            item.classList.remove('active');
-        })
-    } else if (ops == true || cls == null) {
-        item.forEach(item => {
-            item.style.opacity = 0;
-        })
+function target() {
+    prevClass(img, index, 'active')
+    prevClass(page, index, 'active')
+    if (this.dataset.target === 'next') {
+        index++;
+        if (index >= img.length) {
+            index = 0;
+        }
+    } else if (this.dataset.target === 'prev') {
+        index--;
+        if(index < 0) {
+            index = img.length -1
+        }
+    } else {
+        index = parseInt(this.dataset.target);
     }
-};
-
-sliderLi.forEach(item => {
-    item.addEventListener('click', clickSlider);
-});
-
-function clickSlider() {
-    timerFun = 0;
-    let atr = this.getAttribute('data-target');
-    index = atr;
-    obh(slider__items, null, true)//для slider__items = opacity = 0
-    obh(sliderLi, true, null)//sliderLi = classList.remove('active')
-    slider__items[atr].style.opacity = 1
-    sliderLi[atr].classList.add('active');
-    timerFun = 2000;
+    nextClass(img, index, 'active')
+    nextClass(page, index, 'active')
 }
-//нужно поработать над кнопками с права и с лево
+function moveInterval() {
+    prevClass(img, index, 'active')
+    prevClass(page, index, 'active')
+    index++;
+    if (index >= img.length) {
+        index = 0;
+    }
+    nextClass(img, index, 'active')
+    nextClass(page, index, 'active')
+}
+
+
+function prevClass(obj, index, strClass) {
+    obj[index].classList.remove(strClass);
+}
+function nextClass(obj, index, strClass) {
+    obj[index].classList.add(strClass);
+}
+function startSlide(time) {
+    interval = setInterval(moveInterval, time)
+}
+function stopSlide() {
+    clearInterval(interval)
+}
+// startSlide(3000)
+page.forEach(item => {
+    item.addEventListener('click', target)
+});
+btn.forEach(item => {
+    item.addEventListener('click', target)
+});

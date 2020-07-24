@@ -7,32 +7,32 @@
   <link rel="icon" href="https://i.pinimg.com/originals/01/de/2a/01de2ad5f726fe3d6302a9cdae828a87.jpg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" />
   <link rel="stylesheet" href="./css/style.css">
-  <title>Пример</title>
+  <title>Myslider</title>
   <script src="script.js" defer></script>
 </head>
 
 <body>
-  <div class="timer"></div>
+
   <header>
     <div class="container">
-      <ul class="slider">
-        <li class="slider__items active"><img src="./img/1.jpg" alt="фото"></li>
-        <li class="slider__items"><img src="./img/2.jpg" alt="фото"></li>
-        <li class="slider__items"><img src="./img/3.jpg" alt="фото"></li>
-        <li class="slider__items"><img src="./img/4.jpg" alt="фото"></li>
-        <li class="slider__items"><img src="./img/5.jpg" alt="фото"></li>
-        <a href="#" class="slider__btn slider__btn-prev" data-target="prev"><i class="fas fa-angle-left"></i></a>
-        <a href="#" class="slider__btn slider__btn-next" data-target="next"><i class="fas fa-angle-right"></i></a>
+      <ul class="slider__ul">
+
+        <li class="slider__li active"><img src="img/1.jpg" alt="1"></li>
+        <li class="slider__li"><img src="img/2.jpg" alt="2"></li>
+        <li class="slider__li"><img src="img/3.jpg" alt="3"></li>
+
+        <a href="#" class="slider__btn slider__btn-prev"><i class="fas fa-angle-left"></i></a>
+        <a href="#" class="slider__btn slider__btn-next"><i class="fas fa-angle-right"></i></a>
+
         <div class="slider__page-block">
-          <ul class="slider__page-ul">
-            <li class="slider__page-li active" data-target="0"></li>
-            <li class="slider__page-li" data-target="1"></li>
-            <li class="slider__page-li" data-target="2"></li>
-            <li class="slider__page-li" data-target="3"></li>
-            <li class="slider__page-li" data-target="4"></li>
+          <ul class="slider__page_ul">
+            <li class="slider__page_li active" data-target="0"></li>
+            <li class="slider__page_li" data-target="1"></li>
+            <li class="slider__page_li" data-target="2"></li>
           </ul>
         </div>
-      </ul>
+
+      </ul><!--//slider__ul-->
     </div>
   </header>
 </body>
