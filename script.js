@@ -5,6 +5,7 @@ let img = document.querySelectorAll('.slider__li'),
     interval = null;
 
 function target() {
+    console.log(this.getAttribute('data-target'))
     prevClass(img, index, 'active')
     prevClass(page, index, 'active')
     if (this.dataset.target === 'next') {
